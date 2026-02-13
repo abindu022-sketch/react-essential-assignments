@@ -1,27 +1,3 @@
-/*
-import Header from "./Header";
-import PersonalInfo from "./PersonalInfo";
-import Avatar from "./Avatar";
-import Bio from "./Bio";
-
-import "./PortfolioCard.css";
-
-function PortfolioCard( ) {
-  return (
-    <div className="portfolio-card">
-      <Header />
-      <div className="card-content">
-        <Avatar />
-        <PersonalInfo />
-        <Bio />
-      </div>
-    </div>
-  );
-}
-
-export default PortfolioCard;
-*/
-
 import { useState } from "react";
 import Header from "./Header";
 import PersonalInfo from "./PersonalInfo";
@@ -51,7 +27,7 @@ function PortfolioCard() {
 
   const userData = {
     bio: "Passionate software engineer who loves building interactive applications.",
-    skills: ["JavaScript", "React", "Node.js", "CSS"]
+    skills: ["JavaScript", "React", "Node.js", "CSS", "HTML"]
   };
 
   return (
@@ -62,7 +38,7 @@ function PortfolioCard() {
         <Avatar />
 
         <PersonalInfo />
-        <Bio bio={userData.bio} skills={userData.skills} />
+        <Bio userData={userData} />
 
         <div style={{ marginTop: "15px" }}>
           <button onClick={handleLike}>❤️ Like</button>
