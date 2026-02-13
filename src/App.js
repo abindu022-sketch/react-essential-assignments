@@ -1,25 +1,19 @@
-import logo from './logo.svg';
+//1. Import statemetnts (if needed).
 import './App.css';
+import PortfolioCard from './components/PortfolioCard';
 
-function App() {
+// 2. Component Function (always starts with capital letter!)
+function App(){
+
+  //3. Javascripty logic goes here
+
+  //4. Return JSX (the UI)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PortfolioCard />
     </div>
   );
 }
 
-export default App;
+//5. exort so other files can use it
+export  default App;
