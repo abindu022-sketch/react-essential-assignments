@@ -1,61 +1,127 @@
 import { useState } from "react";
-import Header from "./Header";
-import PersonalInfo from "./PersonalInfo";
 import Avatar from "./Avatar";
-import Bio from "./Bio";
-
 import "./PortfolioCard.css";
 
 function PortfolioCard() {
-  const [darkMode, setDarkMode] = useState(false);
 
-  // Likes State
-  const [likes, setLikes] = useState(0);
+  const profiles = [
+    {
+      name: "Prakash",
+      role: "Frontend Developer",
+      bio: "Frontend Engineer having experience around 9+ years. Build competitive edge UI designs in previous projects.I design and build calm, focused product experiences for fast-moving teams.",
+      image: "https://i.pravatar.cc/150?img=1",
+      skills: ["Design System","React","TypeScript","Figma"]
+    },
+    {
+      name: "Srijanya",
+      role: "Frontend Developer",
+      bio: "Frontend developer passionate about building responsive UI. Having experience of 2+ years in UI. Having exposure to user experence designs in previous project. I design and build calm, focused product experiences for fast-moving teams.",
+      image: "https://i.pravatar.cc/150?img=2",
+      skills: ["React","JavaScript","CSS"]
+    },
+    {
+      name: "Satyam",
+      role: "UI/UX Designer",
+      bio: "Creative designer focused on user experience. Passionated to work on UI in competetive environment. I design and build calm, focused product experiences for fast-moving teams.",
+      image: "https://i.pravatar.cc/150?img=3",
+      skills: ["Figma","UX","Prototyping"]
+    },
+    {
+      name: "Manohar",
+      role: "Full Stack Developer",
+      bio: "Engineer who builds performant applications. Build creative designs by focusing on user experience. Having 15+ years of experience. I design and build calm, focused product experiences for fast-moving teams.",
+      image: "https://i.pravatar.cc/150?img=4",
+      skills: ["Node","React","MongoDB"]
+    }
+  ];
 
-  // Handlers
-  const toggleTheme = () => {
-    setDarkMode(prev => !prev);
+  const [index,setIndex] = useState(0);
+  const [dark,setDark] = useState(false);
+
+  const nextProfile = () => {
+    setIndex((index + 1) % profiles.length);
   };
 
-  const showAlert = () => {
-    alert("Thanks for visiting my profile!");
+  const prevProfile = () => {
+    setIndex((index - 1 + profiles.length) % profiles.length);
   };
 
-  const handleLike = () => {
-    setLikes(prev => prev + 1);
+  const showContact = () => {
+    alert(`Contact button clicked will contact ${profiles[index].name}`);
   };
 
-  const userData = {
-    bio: "Passionate software engineer who loves building interactive applications.",
-    skills: ["JavaScript", "React", "Node.js", "CSS", "HTML"]
-  };
+  const profile = profiles[index];
 
   return (
-    <div className={`portfolio-card ${darkMode ? "dark" : ""}`}>
-      <Header />
 
-      <div className="card-content">
-        <Avatar />
+    <div className="container">
 
-        <PersonalInfo />
-        <Bio userData={userData} />
+      {/* Top Right Toggle */}
+      <div className="toggle-theme">
+        <button onClick={()=>setDark(!dark)}>
+          ☀ Toggle theme
+        </button>
+      </div>
 
-        <div style={{ marginTop: "15px" }}>
-          <button onClick={handleLike}>❤️ Like</button>
-          <p>{likes} Likes</p>
+      <div className={`portfolio-card ${dark ? "dark" : ""}`}>
+
+        {/* Profile Section */}
+        <div className="profile-section">
+
+          <Avatar image={profile.image}/>
+
+          <div className="profile-info">
+
+            <h2>{profile.name}</h2>
+            <p className="role">{profile.role}</p>
+
+            <p className="bio">{profile.bio}</p>
+
+            <h4>Skills</h4>
+
+            <div className="skills">
+              {profile.skills.map((skill,i)=>(
+                <span key={i} className="skill">{skill}</span>
+              ))}
+            </div>
+
+          </div>
         </div>
 
-        <button onClick={toggleTheme}>
-          {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-        </button>
+        {/* Bottom Footer */}
+        <div className="footer">
 
-        <button onClick={showAlert}>Show Alert</button>
+      <div className="footer-left">
+
+        {/* Dark Mode Toggle */}
+        <span
+          className="dark-toggle"
+          onClick={() => setDark(!dark)}
+          style={{ cursor: "pointer" }}
+        >
+          {dark ? "☀ Light" : "🌙 Dark"}
+        </span>
+
+        <span onClick={prevProfile} className="arrow">❮</span>
+
+        <span onClick={nextProfile} className="arrow">❯</span>
+
+        <span>{index + 1} / {profiles.length}</span>
+
+        <span>❤️ 128</span>
+
       </div>
+
+  <button className="contact-btn" onClick={showContact}>
+    Contact
+  </button>
+
+</div>
+
+      </div>
+
     </div>
   );
 }
 
 export default PortfolioCard;
-
-
-
