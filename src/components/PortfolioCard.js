@@ -37,6 +37,8 @@ function PortfolioCard() {
 
   const [index,setIndex] = useState(0);
   const [dark,setDark] = useState(false);
+  const [liked, setLiked] = useState(false);
+const [likes, setLikes] = useState(128);
 
   const nextProfile = () => {
     setIndex((index + 1) % profiles.length);
@@ -48,6 +50,16 @@ function PortfolioCard() {
 
   const showContact = () => {
     alert(`Contact button clicked will contact ${profiles[index].name}`);
+  };
+
+  const toggleLike = () => {
+  if (liked) {
+    setLikes(prev => prev - 1);
+    setLiked(false);
+  } else {
+    setLikes(prev => prev + 1);
+    setLiked(true);
+    }
   };
 
   const profile = profiles[index];
@@ -108,7 +120,12 @@ function PortfolioCard() {
 
         <span>{index + 1} / {profiles.length}</span>
 
-        <span>❤️ 128</span>
+        <span className="like-section" onClick={toggleLike}>
+            <span className={`heart-icon ${liked ? "liked" : ""}`}>
+              {liked ? "❤️" : "♡"}
+            </span>
+            {likes}
+        </span>
 
       </div>
 

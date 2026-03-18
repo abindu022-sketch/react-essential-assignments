@@ -113,3 +113,23 @@ body{
   border-radius:10px;
   cursor:pointer;
 }
+
+.like-section{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.heart-icon{
+  font-size:22px;
+  color:#222;
+  transition: all 0.2s ease;
+}
+
+/* Filled red heart */
+.heart-icon.liked{
+  color:red;
+  transform: scale(1.15);
+}
